@@ -19,11 +19,16 @@ export class LoginComponent implements OnInit{
     this.route.params.subscribe((data: any) => {
       this.index = +data.id;
       this.intern = this.service.interns.filter((intern: Intern) => intern.id === this.index)[0];
-      alert(JSON.stringify(this.intern))
+     // alert(JSON.stringify(this.intern))
+      this.service.addTask().subscribe(data =>{
+        alert(JSON.stringify(data))
+      }, error => alert(error))
+    }, () => {
+      alert("Completed")
     });
 
   }
-
+//use then with promise and subscribe with obsevable
   goToHome() {
     this.router.navigate(['home'])
   }
